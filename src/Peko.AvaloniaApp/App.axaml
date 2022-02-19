@@ -3,7 +3,7 @@
              xmlns:local="using:Peko.AvaloniaApp"
              x:Class="Peko.AvaloniaApp.App">
     <Application.DataTemplates>
-        <local:ViewLocator/>
+        <!--<local:ViewLocator/>-->
     </Application.DataTemplates>
 
     <Application.Styles>
