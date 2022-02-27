@@ -29,14 +29,14 @@ namespace Peko.AvaloniaApp
             => BuildAvaloniaApp(default);
         internal static AppBuilder BuildAvaloniaApp(IServiceProvider? serviceProvider)
             =>
-            (serviceProvider == null
-                ? AppBuilder.Configure<App>()
-                : AppBuilder.Configure(() =>
-                {
-                    var app = serviceProvider.GetService<App>();
-                    return app;
-                })
-            )
+                (serviceProvider == null
+                    ? AppBuilder.Configure<App>()
+                    : AppBuilder.Configure(() =>
+                    {
+                        var app = serviceProvider.GetService<App>();
+                        return app;
+                    })
+                )
                 .UsePlatformDetect()
                 .LogToTrace()
                 //.LogToDebug()
@@ -50,18 +50,17 @@ namespace Peko.AvaloniaApp
                 {
                     services.UseMicrosoftDependencyResolver();
 
-                    services.AddEntityFrameworkSqlite();
+                    //services.AddEntityFrameworkSqlite();
 
                     services.AddDbContext<PekoDbContext>(options =>
                     {
                         options.UseSqlite(hostContext.Configuration.GetConnectionString(nameof(PekoDbContext)));
                     });
 
-                    services.AddIdentityCore<IdentityUser>(options =>
-                    {
-                        options.SignIn.RequireConfirmedAccount = true;
-                    })
-                    .AddEntityFrameworkStores<PekoDbContext>();
+                    services
+                        .AddIdentityCore<PekoUser>()
+                        .AddRoles<IdentityRole>()
+                        .AddEntityFrameworkStores<PekoDbContext>();
 
                     services.AddHostedService<AvaloniaHostedService>();
 

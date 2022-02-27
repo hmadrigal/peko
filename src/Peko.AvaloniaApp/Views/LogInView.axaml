@@ -13,6 +13,7 @@
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto" />
 				<RowDefinition Height="Auto" />
+				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
@@ -25,8 +26,11 @@
 			<TextBlock Grid.Row="1" Grid.Column="0" Text="Password:"></TextBlock>
 			<TextBox Grid.Row="1" Grid.Column="1"  PasswordChar="*" ></TextBox>
 
+			<Button Grid.Row="2" Grid.Column="0" Command="{Binding LogInCommand,Mode=OneTime}" >Log in</Button>
+			<Button Grid.Row="2" Grid.Column="1" >Cancel</Button>
+
 		</Grid>
 	</StackPanel>
-	
+
 
 </UserControl>

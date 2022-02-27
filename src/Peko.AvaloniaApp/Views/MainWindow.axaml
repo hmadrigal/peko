@@ -34,8 +34,8 @@
 					<Setter Property="VerticalAlignment" Value="Center"/>
 				</Style>
 			</StackPanel.Styles>
-			<Button Content="Go next" Command="{Binding GoNext}" />
-			<Button Content="Go back" Command="{Binding GoBack}" />
+			<Button Content="Go next" Command="{Binding GoNextCommand}" />
+			<Button Content="Go back" Command="{Binding GoBackCommand}" />
 			<TextBlock Text="{Binding Router.NavigationStack.Count}" />
 		</StackPanel>
 	</Grid>
