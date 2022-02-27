@@ -39,7 +39,9 @@ namespace Peko.AvaloniaApp
             )
                 .UsePlatformDetect()
                 .LogToTrace()
-                .UseReactiveUI();
+                //.LogToDebug()
+                .UseReactiveUI()
+            ;
 
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

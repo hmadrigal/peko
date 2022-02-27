@@ -27,6 +27,7 @@ namespace Peko.AvaloniaApp
 
         private void OnApplicationStopping()
         {
+            _logger.LogDebug("Stopping application");
             if (_cancellationToken != null && !_cancellationToken.IsCancellationRequested)
                 _cancellationToken.Cancel();
         }
@@ -38,7 +39,10 @@ namespace Peko.AvaloniaApp
 
             var avaloniaUiTask = Task.Run(() =>
             {
+
                 var args = Environment.GetCommandLineArgs();
+
+                _logger.LogDebug("Starting application");
 
                 var appBuilder = Program.BuildAvaloniaApp(_serviceProvider);
                 appBuilder.StartWithClassicDesktopLifetime(args);

@@ -1,8 +1,7 @@
 ﻿using Avalonia.Controls.Templates;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Peko.ViewModels;
+using ReactiveUI;
 
 namespace Peko.AvaloniaApp
 {
@@ -11,10 +10,20 @@ namespace Peko.AvaloniaApp
 
         public static void AddAvalonia(this IServiceCollection services)
         {
+            // View Model Locator
             services.AddSingleton<IDataTemplate, ViewLocator>();
 
+            // Main view 
             services.AddSingleton<Views.MainWindow>();
+
+            // Nested views
+            services.AddSingleton<IViewFor<LogInViewModel>, Views.LogInView>();
+
+            // View Models
             services.AddSingleton<ViewModels.MainWindowViewModel>();
+            services.AddSingleton<ViewModels.LogInViewModel>();
+
+            // Main App
             services.AddSingleton<App>();
         }
 
