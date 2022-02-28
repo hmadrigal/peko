@@ -56,7 +56,7 @@ namespace Peko.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    DNI = table.Column<int>(nullable: false),
+                    DNI = table.Column<string>(nullable: true),
                     FirstName = table.Column<string>(nullable: true),
                     SecondName = table.Column<string>(nullable: true),
                     LastName1 = table.Column<string>(nullable: true),

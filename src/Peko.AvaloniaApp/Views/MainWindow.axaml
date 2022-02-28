@@ -10,11 +10,11 @@
         x:Class="Peko.AvaloniaApp.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="Peko" 
-		x:Name="mainWindow" 
+		x:Name="view"
 		>
 
 	<i:Interaction.Behaviors>
-		<ia:EventTriggerBehavior EventName="Opened" SourceObject="{Binding #mainWindow}" >
+		<ia:EventTriggerBehavior EventName="Opened" SourceObject="{Binding #view}" >
 			<ia:InvokeCommandAction Command="{Binding WindowInitializedCommand}" CommandParameter="{x:Null}" />
 		</ia:EventTriggerBehavior>
 	</i:Interaction.Behaviors>

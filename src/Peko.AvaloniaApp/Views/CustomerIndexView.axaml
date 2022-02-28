@@ -2,7 +2,33 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+             xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Peko.AvaloniaApp.Views.CustomerIndexView">
-	Welcome to CustomerIndexView!
+             x:Class="Peko.AvaloniaApp.Views.CustomerIndexView"
+			 x:Name="view"
+			 >
+
+	<i:Interaction.Behaviors>
+		<ia:EventTriggerBehavior EventName="Initialized" SourceObject="{Binding #view}" >
+			<ia:InvokeCommandAction Command="{Binding ViewInitializedCommand}" CommandParameter="{x:Null}" />
+		</ia:EventTriggerBehavior>
+	</i:Interaction.Behaviors>
+
+	<DockPanel>
+		<DataGrid Items="{Binding Customers}" >
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Id" Binding="{Binding DNI}" />
+				<DataGridTextColumn Header="First name"  Binding="{Binding FirstName}"/>
+				<DataGridTextColumn Header="Middle name" Binding="{Binding SecondName}" />
+				<DataGridTextColumn Header="Last name"  Binding="{Binding LastName1}"/>
+				<DataGridTextColumn Header="Second surname" Binding="{Binding LastName2}" />
+				<DataGridTextColumn Header="Email"  Binding="{Binding Email}"/>
+				<DataGridTextColumn Header="Address" Binding="{Binding Address}" />
+				<DataGridTextColumn Header="MobilePhone"  Binding="{Binding MobilePhone}"/>
+				<DataGridTextColumn Header="Phone" Binding="{Binding Phone}" />
+			</DataGrid.Columns>
+		</DataGrid>
+	</DockPanel>
+
 </UserControl>

@@ -153,8 +153,8 @@ namespace Peko.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("DNI")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("DNI")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");

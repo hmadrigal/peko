@@ -7,7 +7,7 @@ namespace Peko.Models.Identity.Data
     public class Customer
     {
         public int Id { get; set; }
-        public int DNI { get; set; }
+        public string DNI { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string LastName1 { get; set; }

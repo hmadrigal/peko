@@ -8,9 +8,13 @@
     <AvaloniaResource Include="Assets\**" />
     <None Remove=".gitignore" />
     <None Remove="appsettings.json" />
+    <None Remove="AvaloniaApp.db" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AvaloniaApp.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

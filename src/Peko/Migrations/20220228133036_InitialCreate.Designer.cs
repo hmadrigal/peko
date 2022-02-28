@@ -9,7 +9,7 @@ using Peko.Models.Identity.Data;
 namespace Peko.Migrations
 {
     [DbContext(typeof(PekoDbContext))]
-    [Migration("20220228015436_InitialCreate")]
+    [Migration("20220228133036_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -155,8 +155,8 @@ namespace Peko.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("DNI")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("DNI")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
                         .HasColumnType("TEXT");
