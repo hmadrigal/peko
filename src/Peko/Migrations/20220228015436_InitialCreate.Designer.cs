@@ -9,7 +9,7 @@ using Peko.Models.Identity.Data;
 namespace Peko.Migrations
 {
     [DbContext(typeof(PekoDbContext))]
-    [Migration("20220227231938_InitialCreate")]
+    [Migration("20220228015436_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -146,7 +146,45 @@ namespace Peko.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Peko.Models.Identity.Data.PekoUser", b =>
+            modelBuilder.Entity("Peko.Models.Identity.Data.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("DNI")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName1")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName2")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MobilePhone")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Phone")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SecondName")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("Peko.Models.Identity.Data.PekoIdentityUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
@@ -233,7 +271,7 @@ namespace Peko.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Peko.Models.Identity.Data.PekoUser", null)
+                    b.HasOne("Peko.Models.Identity.Data.PekoIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -242,7 +280,7 @@ namespace Peko.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Peko.Models.Identity.Data.PekoUser", null)
+                    b.HasOne("Peko.Models.Identity.Data.PekoIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -257,7 +295,7 @@ namespace Peko.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Peko.Models.Identity.Data.PekoUser", null)
+                    b.HasOne("Peko.Models.Identity.Data.PekoIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -266,7 +304,7 @@ namespace Peko.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Peko.Models.Identity.Data.PekoUser", null)
+                    b.HasOne("Peko.Models.Identity.Data.PekoIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

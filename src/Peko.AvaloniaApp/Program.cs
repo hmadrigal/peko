@@ -48,9 +48,10 @@ namespace Peko.AvaloniaApp
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
+
                     services.UseMicrosoftDependencyResolver();
 
-                    //services.AddEntityFrameworkSqlite();
+                    services.AddAvalonia();
 
                     services.AddDbContext<PekoDbContext>(options =>
                     {
@@ -58,13 +59,11 @@ namespace Peko.AvaloniaApp
                     });
 
                     services
-                        .AddIdentityCore<PekoUser>()
+                        .AddIdentityCore<PekoIdentityUser>()
                         .AddRoles<IdentityRole>()
                         .AddEntityFrameworkStores<PekoDbContext>();
 
                     services.AddHostedService<AvaloniaHostedService>();
-
-                    services.AddAvalonia();
 
                 });
 

@@ -51,6 +51,27 @@ namespace Peko.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Customers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    DNI = table.Column<int>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    SecondName = table.Column<string>(nullable: true),
+                    LastName1 = table.Column<string>(nullable: true),
+                    LastName2 = table.Column<string>(nullable: true),
+                    Phone = table.Column<string>(nullable: true),
+                    MobilePhone = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -210,6 +231,9 @@ namespace Peko.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Customers");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -4,16 +4,15 @@ using Peko.ViewModels;
 
 namespace Peko.AvaloniaApp.Views
 {
-    public partial class LogInView : ReactiveUserControl<LogInViewModel>
+    public partial class DashboardView : ReactiveUserControl<DashboardViewModel>
     {
-        public LogInView()
+        public DashboardView()
         {
             InitializeComponent();
         }
 
         private void InitializeComponent()
         {
-            //this.WhenActivated(disposables => { });
             AvaloniaXamlLoader.Load(this);
         }
     }

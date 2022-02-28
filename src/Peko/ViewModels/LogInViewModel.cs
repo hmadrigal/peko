@@ -7,13 +7,13 @@ namespace Peko.ViewModels
 {
     public class LogInViewModel : RoutableViewModelBase
     {
-        private readonly UserManager<PekoUser> _userManager;
+        public override string UrlPathSegment => GetSegmentName(nameof(LogInViewModel));
 
-        public override string UrlPathSegment => nameof(LogInViewModel);
+        private readonly UserManager<PekoIdentityUser> _userManager;
 
         public ICommand LogInCommand { get; }
 
-        public LogInViewModel(IScreen screen, UserManager<PekoUser> userManager) : base(screen)
+        public LogInViewModel(IScreen screen, UserManager<PekoIdentityUser> userManager) : base(screen)
         {
             _userManager = userManager;
             LogInCommand = ReactiveCommand.Create(OnLogInCommand);
@@ -21,6 +21,8 @@ namespace Peko.ViewModels
 
         private void OnLogInCommand()
         {
+            // TODO: Perform credentials validation
+            NavigateTo<DashboardViewModel>();
 
         }
     }

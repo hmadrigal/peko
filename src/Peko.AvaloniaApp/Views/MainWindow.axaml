@@ -4,16 +4,54 @@
         xmlns:vm="using:Peko.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:i="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+        xmlns:ia="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Peko.AvaloniaApp.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Peko.AvaloniaApp">
+        Title="Peko" 
+		x:Name="mainWindow" 
+		>
 
-    <Design.DataContext>
-        <vm:MainWindowViewModel/>
-    </Design.DataContext>
+	<i:Interaction.Behaviors>
+		<ia:EventTriggerBehavior EventName="Opened" SourceObject="{Binding #mainWindow}" >
+			<ia:InvokeCommandAction Command="{Binding WindowInitializedCommand}" CommandParameter="{x:Null}" />
+		</ia:EventTriggerBehavior>
+	</i:Interaction.Behaviors>
 
-	<Grid>
+	<Design.DataContext>
+		<vm:MainWindowViewModel/>
+	</Design.DataContext>
+
+	<DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+		<StackPanel Orientation="Vertical" DockPanel.Dock="Top">
+			<Menu >
+				<MenuItem Header="_Application">
+					<MenuItem Header="_Exit"/>
+				</MenuItem>
+				<MenuItem Header="_Management">
+					<MenuItem Header="_Customer" Command="{Binding GoToCustomerIndexCommand}" />
+					<MenuItem Header="_Workshop" />
+				</MenuItem>
+			</Menu>
+			<WrapPanel Orientation="Horizontal">
+				<Button Content="Go next" Command="{Binding GoNextCommand}" />
+				<Button Content="Go back" Command="{Binding GoBackCommand}" />
+				<TextBlock Text="{Binding Router.NavigationStack[^1].UrlPathSegment}" />
+			</WrapPanel>
+		</StackPanel>
+
+		<rxui:RoutedViewHost  Router="{Binding Router}">
+			<rxui:RoutedViewHost.DefaultContent>
+				<TextBlock Text="Default content"
+						   HorizontalAlignment="Center"
+						   VerticalAlignment="Center" />
+			</rxui:RoutedViewHost.DefaultContent>
+		</rxui:RoutedViewHost>
+
+	</DockPanel>
+
+	<!--<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*" />
 			<RowDefinition Height="Auto" />
@@ -38,7 +76,6 @@
 			<Button Content="Go back" Command="{Binding GoBackCommand}" />
 			<TextBlock Text="{Binding Router.NavigationStack.Count}" />
 		</StackPanel>
-	</Grid>
-	
+	</Grid>-->
 
 </Window>

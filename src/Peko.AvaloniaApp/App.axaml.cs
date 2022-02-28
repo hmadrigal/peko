@@ -5,18 +5,12 @@ using Peko.ViewModels;
 using Peko.AvaloniaApp.Views;
 using System;
 using Microsoft.Extensions.DependencyInjection;
+using Splat;
 
 namespace Peko.AvaloniaApp
 {
     public class App : Application
     {
-        private readonly IServiceProvider? _serviceProvider;
-
-        public App() : this(null) { }
-        public App(IServiceProvider? serviceProvider)
-        {
-            _serviceProvider = serviceProvider;
-        }
 
         public override void Initialize()
         {
@@ -27,11 +21,13 @@ namespace Peko.AvaloniaApp
         {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                var mainWindowViewModel = _serviceProvider?.GetService<MainWindowViewModel>() ?? new MainWindowViewModel();
-                var mainWindow = _serviceProvider?.GetService<MainWindow>() ?? new MainWindow();
+                var locator = Locator.Current;
+
+                var mainWindowViewModel = locator.GetService<MainWindowViewModel>() ?? new MainWindowViewModel();
+                var mainWindow = locator.GetService<MainWindow>() ?? new MainWindow();
                 mainWindow.DataContext = mainWindowViewModel;
-                var locator = _serviceProvider?.GetService<Avalonia.Controls.Templates.IDataTemplate>() ?? new ViewLocator(_serviceProvider!);
-                mainWindow.DataTemplates.Add(locator);
+                var dataTemplate = locator.GetService<Avalonia.Controls.Templates.IDataTemplate>() ?? new ViewLocator();
+                mainWindow.DataTemplates.Add(dataTemplate);
                 desktop.MainWindow = mainWindow;
             }
 

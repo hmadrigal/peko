@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Peko.Models.Identity.Data
 {
-    public class PekoUser : IdentityUser
+    public class PekoIdentityUser : IdentityUser
     {
         [PersonalData]
         public string FirstName { get; set; }
